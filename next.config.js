@@ -14,7 +14,7 @@
                 options: { mode: ['react-component'] }
             }
         )
-        cfg.resolve.fallback = { fs: false };
+        cfg.resolve.fallback = { fs: false, process: false };
         return cfg;
     }
   }
