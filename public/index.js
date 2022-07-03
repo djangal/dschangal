@@ -1,4 +1,13 @@
-  // Also can pass in optional settings block
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", user => {
+    if (!user) {
+      window.netlifyIdentity.on("login", () => {
+        document.location.href = "/admin/";
+      });
+    }
+  });
+}
+
   var rellax = new Rellax('.box', {
     speed: -2,
     center: false,

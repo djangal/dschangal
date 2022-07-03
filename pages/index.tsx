@@ -18,6 +18,7 @@ export default function Home({projectSections}: ProjectSecionsData) {
     >
       <Head>
         <title>Create Next App</title>
+        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
       </Head>
       <main>
         <HomeContent />
