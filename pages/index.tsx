@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps<ProjectSecionsData> = async () => {
     const matterData = matter(file)
 
     return {
-      ...matterData.data, // matterData.data contains front matter
+      // ...matterData.data, // matterData.data contains front matter
       slug: filename.slice(0, filename.indexOf('.')),
       markdownContent: matterData.content
     }

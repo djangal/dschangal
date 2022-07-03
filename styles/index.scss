@@ -1,8 +1,17 @@
 .box {
     background: lightblue;
 
-    width: 200px;
-    height: 200px;
+
 
     box-shadow: 0px 0px 15px black;
+
+    max-width: 90vw;
+    overflow: hidden;
+
+    img {
+        max-width: 100%;
+        max-height: 500px;
+        
+    }
+
 }

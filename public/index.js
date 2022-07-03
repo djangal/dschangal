@@ -8,8 +8,8 @@ if (window.netlifyIdentity) {
   });
 }
 
-  var rellax = new Rellax('.box', {
-    speed: -2,
+  var rellax = new Rellax('img', {
+    speed: 2,
     center: false,
     wrapper: null,
     round: true,
