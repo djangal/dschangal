@@ -4,6 +4,7 @@
  * @type {import('next').NextConfig}
  **/
  const nextConfig = {
+    webpack5: true,
     /* config options here */
     webpack: (cfg) => {
         cfg.module.rules.push(
@@ -13,6 +14,7 @@
                 options: { mode: ['react-component'] }
             }
         )
+        cfg.resolve.fallback = { fs: false };
         return cfg;
     }
   }
