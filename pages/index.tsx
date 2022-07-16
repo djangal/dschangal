@@ -6,8 +6,10 @@ import matter from 'gray-matter'
 import ReactMarkdown from 'react-markdown'
 import * as fs from 'fs';
 import { GetStaticProps } from "next";
+import { ProjectSectionsData } from "../components/project.model";
 
-export default function Home({projectSections}: ProjectSecionsData) {
+
+export default function Home({projectSections}: ProjectSectionsData) {
   return (
     <div
       style={{
@@ -22,7 +24,7 @@ export default function Home({projectSections}: ProjectSecionsData) {
       </Head>
       <main>
         <HomeContent />
-        {projectSections.map(s => <div key={s.title} className="box"><ReactMarkdown>{s.markdownContent}</ReactMarkdown></div>)}
+        {projectSections.map(s => <div key={s.title} className="box"><ReactMarkdown>{s.body}</ReactMarkdown></div>)}
 
         <script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
         <script src="index.js"></script>
@@ -31,16 +33,7 @@ export default function Home({projectSections}: ProjectSecionsData) {
   );
 }
 
-export interface ProjectSecionsData {
-  projectSections: Array<{
-    slug: string, 
-    markdownContent: string, 
-    coverImage?: string,
-    galleryImages?: string[],
-    [key: string]: any}>
-}
-
-export const getStaticProps: GetStaticProps<ProjectSecionsData> = async () => {
+export const getStaticProps: GetStaticProps<ProjectSectionsData> = async () => {
   // List of files in blgos folder =>
   const files = fs.readdirSync('./content/projects')
 console.log('getStaticProps')
@@ -53,7 +46,7 @@ console.log('getStaticProps')
       ...matterData.data,
       date: matterData.data.date.toString(),
       slug: filename.slice(0, filename.indexOf('.')),
-      markdownContent: matterData.content,
+      body: matterData.content,
     }
   })
 
