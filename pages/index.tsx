@@ -22,7 +22,7 @@ export default function Home({projectSections}: ProjectSecionsData) {
       </Head>
       <main>
         <HomeContent />
-        {projectSections.map(s => <div className="box"><ReactMarkdown>{s.markdownContent}</ReactMarkdown></div>)}
+        {projectSections.map(s => <div key={s.title} className="box"><ReactMarkdown>{s.markdownContent}</ReactMarkdown></div>)}
 
         <script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
         <script src="index.js"></script>
@@ -32,22 +32,28 @@ export default function Home({projectSections}: ProjectSecionsData) {
 }
 
 export interface ProjectSecionsData {
-  projectSections: Array<{slug: string, markdownContent: string, [key: string]: any}>
+  projectSections: Array<{
+    slug: string, 
+    markdownContent: string, 
+    coverImage?: string,
+    galleryImages?: string[],
+    [key: string]: any}>
 }
 
 export const getStaticProps: GetStaticProps<ProjectSecionsData> = async () => {
   // List of files in blgos folder =>
   const files = fs.readdirSync('./content/projects')
-
+console.log('getStaticProps')
   // Get the front matter and slug (the filename without .md) of all files
   const markdownContents = files.map(filename => {
     const file = fs.readFileSync(`./content/projects/${filename}`, 'utf8')
     const matterData = matter(file)
-
+    console.log('SALI', matterData)
     return {
-      // ...matterData.data, // matterData.data contains front matter
+      ...matterData.data,
+      date: matterData.data.date.toString(),
       slug: filename.slice(0, filename.indexOf('.')),
-      markdownContent: matterData.content
+      markdownContent: matterData.content,
     }
   })
 
