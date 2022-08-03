@@ -1,35 +1,87 @@
-import { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import { ProjectSectionData, ProjectSectionsData } from "./project.model";
+import {
+  ImgMeta,
+  ProjectSectionData,
+  ProjectSectionsData,
+} from "./project.model";
 import Head from "next/head";
+import Image from "next/image";
 
 import Application from "../pages/_app";
-import { Router } from "next/router";
+import { Parallax, parallaxFx } from "./parallax";
+import ImgReel from "./img-reel";
+import Modal from "./modal";
+
+import ImageGallery from "react-image-gallery";
+import { useState } from "react";
 
 export function ProjectSection(s: ProjectSectionData) {
+  const [detailImage, setDetailImage] = useState<number | null>(null);
   return (
     <div className="projectSection">
-      {" "}
-      <img src={s.coverImage} className="coverImage" />
-      <div className="body">
-        <ReactMarkdown>{s.body}</ReactMarkdown>
-      </div>
-      <div className="gallery">
-        {s.galleryImages.map((i) => (
-          <img key={i} src={i} />
-        ))}
-      </div>
+      <h2>{s.title}</h2>
+      <ImgReel images={s.galleryImagesMeta}>
+        <Parallax config={parallaxFx.topBottomCoverImg}>
+          <div
+            style={{
+              backgroundImage: `url(${s.coverImage})`,
+              backgroundPositionY: `var(--bgpos)`,
+            }}
+            className="coverImage"
+          ></div>
+        </Parallax>
+        <div>
+          <div className="body">
+            <ReactMarkdown>{s.body}</ReactMarkdown>
+          </div>
+          <div className="gallery">
+            {s.galleryImagesMeta.map((img, i) => (
+              <Parallax key={img.src + i}>
+                <a
+                  className="galleryImage"
+                  href={"#" + img.src}
+                  onClick={(ev) => {
+                    setDetailImage(i);
+                    ev.preventDefault();
+                  }}
+                >
+                  <Image
+                    src={img.src}
+                    width={img.width}
+                    height={img.height}
+                    style={{
+                      opacity: "var(--opacity)",
+                      willChange: "opacity",
+                    }}
+                  />
+                </a>
+              </Parallax>
+            ))}
+          </div>
+        </div>
+      </ImgReel>
+
+      <Modal open={detailImage === null ? false : detailImage + 1}>
+        <ImageGallery
+          showPlayButton={false}
+          showFullscreenButton={false}
+          startIndex={detailImage}
+          items={s.galleryImagesMeta.map((img) => ({
+            original: img.src,
+            thumbnail: img.src,
+          }))}
+        />
+      </Modal>
     </div>
   );
 }
 
-function ProjectSections({ projectSections }: ProjectSectionsData) {
-  console.log("ProjectSections", projectSections);
+export function ProjectSections({ projectSections }: ProjectSectionsData) {
   return (
     <div>
-      {projectSections.map((s) => (
-        <ProjectSection key={s.title} {...s} />
-      ))}
+      {projectSections
+        .map((s) => <ProjectSection key={s.title} {...s} />)
+        .slice(0, 1)}
     </div>
   );
 }
