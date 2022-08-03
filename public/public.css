@@ -1,34 +1,5 @@
-.projectSection {
-    background: lightblue;
-
-    box-shadow: 0px 0px 15px black;
-
-    max-width: 90vw;
-    overflow: hidden;
-
-    z-index: 0;
-    position: relative;
-}
-.projectSection .body {
-    
-}
-
-.projectSection .body h1 {
-    color: white;
-}
-.projectSection .gallery img {
-    max-width: 300px;
-    display: inline-block;
-
-}
-.projectSection .coverImage {
-    position: absolute;
-    width: 100%;
-    max-height: max(50vh, 600px);
-    z-index: -1;
-}
-
-.projectSection img {
-    max-width: 100%;
-    max-height: 300px;
-}
+@font-face {
+    font-family: "FjallaOne-Regular";
+    src: url("FjallaOne-Regular.ttf");
+  } 
+  

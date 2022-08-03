@@ -1,1 +1,77 @@
-@import '../public/public.css'
+html {
+  font-family: FjallaOne-Regular;
+}
+
+.projectSection {
+  max-width: 90vw;
+
+  z-index: 0;
+  position: relative;
+
+  .body {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .body h1 {
+    // color: white;
+  }
+
+  .imgReel {
+    display: flex;
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      img {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+
+        max-width: max(15vw, 200px);
+        // max-width: max(50vw, 600px);
+        max-height: max(25vh, 400px);
+        display: inline-block;
+        object-fit: cover;
+      }
+    }
+
+    .coverImage {
+      width: 50vw;
+      height: max(80vh, 600px);
+      z-index: -1;
+      background-size: cover;
+    }
+  }
+}
+
+$thumbnailsheight: 130px;
+$modalpadding: 24px;
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  padding-top: $modalpadding;
+  padding-bottom: $modalpadding;
+
+  .backdrop {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+  }
+
+  .image-gallery-content .image-gallery-slide .image-gallery-image {
+    max-height: calc(
+      100vh - #{$thumbnailsheight} - #{$modalpadding} - #{$modalpadding} - #{$modalpadding}
+    );
+  }
+
+  .image-gallery-thumbnails-wrapper {
+    height: $thumbnailsheight;
+  }
+}

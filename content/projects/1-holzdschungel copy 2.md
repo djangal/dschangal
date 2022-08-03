@@ -1,5 +1,5 @@
 ---
-title: Holzdschungel
+title: Holzdschungel 3
 date: 2022-07-03T19:23:09.943Z
 coverImage: img/340a9932.jpg
 galleryImages:

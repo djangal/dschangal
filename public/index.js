@@ -1,5 +1,5 @@
 if (window.netlifyIdentity) {
-  window.netlifyIdentity.on("init", user => {
+  window.netlifyIdentity.on("init", (user) => {
     if (!user) {
       window.netlifyIdentity.on("login", () => {
         document.location.href = "/admin/";
@@ -8,11 +8,13 @@ if (window.netlifyIdentity) {
   });
 }
 
-  var rellax = new Rellax('img', {
-    speed: 2,
-    center: false,
-    wrapper: null,
-    round: true,
-    vertical: true,
-    horizontal: false
-  });
+// setTimeout(() => {
+//   var rellax = new Rellax("img", {
+//     speed: 2,
+//     center: false,
+//     wrapper: null,
+//     round: true,
+//     vertical: true,
+//     horizontal: false,
+//   });
+// }, 1000);

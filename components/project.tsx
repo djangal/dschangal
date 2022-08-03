@@ -5,7 +5,7 @@ import {
   ProjectSectionsData,
 } from "./project.model";
 import Head from "next/head";
-import Image from "next/image";
+import Image from "next/future/image";
 
 import Application from "../pages/_app";
 import { Parallax, parallaxFx } from "./parallax";
@@ -13,7 +13,9 @@ import ImgReel from "./img-reel";
 import Modal from "./modal";
 
 import ImageGallery from "react-image-gallery";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { extendWithImageMetaWeb } from "../util/extendWithImageMetaWeb";
+import { extendWithImageMetaFake } from "../util/extendWithImageMetaFake";
 
 export function ProjectSection(s: ProjectSectionData) {
   const [detailImage, setDetailImage] = useState<number | null>(null);
@@ -45,15 +47,17 @@ export function ProjectSection(s: ProjectSectionData) {
                     ev.preventDefault();
                   }}
                 >
-                  <Image
-                    src={img.src}
-                    width={img.width}
-                    height={img.height}
-                    style={{
-                      opacity: "var(--opacity)",
-                      willChange: "opacity",
-                    }}
-                  />
+                  {img.width && img.height && (
+                    <Image
+                      src={img.src}
+                      width={img.width}
+                      height={img.height}
+                      style={{
+                        opacity: "var(--opacity)",
+                        willChange: "opacity",
+                      }}
+                    />
+                  )}
                 </a>
               </Parallax>
             ))}
@@ -109,17 +113,28 @@ export const Wrapper = ({ Component, pageProps }) => {
 };
 
 export const ProjectSectionsPreview = ({ entry, widgetFor }) => {
+  const inputData = entry.get("data").toObject();
+  const [extendedData, setExtData] = useState<any>({});
+
+  extendWithImageMetaFake(inputData);
+  useEffect(() => {
+    const extData = { ...inputData };
+    extendWithImageMetaWeb(extData).then(() => {
+      setExtData(extData);
+    });
+  }, [entry]);
   console.log(
     "ProjectSectionPreview",
     entry.toObject(),
-    entry.get("data").toObject()
+    inputData,
+    extendedData
   );
   return (
     <Application
       Component={Wrapper}
       pageProps={{
         Component: ProjectSection,
-        pageProps: entry.get("data").toObject(),
+        pageProps: { ...inputData, ...extendedData },
       }}
       router={null}
     />
