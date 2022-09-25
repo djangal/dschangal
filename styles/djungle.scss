@@ -1,0 +1,18 @@
+.djungle-wrapper {
+  overflow: hidden;
+  width: 100%;
+  --deg: -10deg;
+  --x: -240px;
+}
+.eule {
+  position: absolute;
+
+  top: 150px;
+  right: 60px;
+  width: 220px;
+  z-index: -1;
+  transition: transform 2s;
+
+  transform: scaleX(-1) rotateZ(var(--deg)) translateX(var(--x));
+  transform-origin: bottom center;
+}

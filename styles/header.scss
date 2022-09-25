@@ -1,0 +1,59 @@
+@import "./colors.scss";
+
+html {
+  --headerInitialHeight: 56px;
+  --headerSmallHeight: 32px;
+  --headerScale: 1;
+  --headerHeight: calc(
+    var(--headerSmallHeight) +
+      (
+        var(--headerScale) *
+          (var(--headerInitialHeight) - var(--headerSmallHeight))
+      )
+  );
+}
+
+body {
+  padding-top: calc(24px + var(--headerInitialHeight));
+}
+.header-menu {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: rgba(var(--colPrimaryBgRgb), 0.4);
+  backdrop-filter: blur(50px);
+  width: 100vw;
+  padding-top: 8px;
+
+  height: var(--headerHeight);
+
+  box-shadow: 0px 1px 15px 10px
+    rgba(0, 0, 0, calc(0.3 * (1 - var(--headerScale))));
+  .menu-left {
+    padding-left: 8px;
+    .logo {
+      height: calc(var(--headerHeight) - 8px);
+    }
+  }
+  .menu-right {
+    flex: 1 1 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-right: 1rem;
+  }
+  .menu-item {
+    display: flex;
+    line-height: calc(var(--headerHeight) - 8px);
+    padding: 4px;
+
+    &:not(:last-child) {
+      border-right: 1px solid $colBorder;
+    }
+  }
+}

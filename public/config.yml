@@ -8,25 +8,39 @@ collections:
   - name: "pages"
     label: "Pages"
     files:
-    - label: "Home"
-      name: "home"
-      file: "content/home.md"
-      fields:
-        - { label: "Title", name: "title", widget: "string"}
-        - { label: "Publish Date", name: "date", widget: "datetime" }
-        - { label: "Body", name: "body", widget: "markdown"}
+      - label: "Home"
+        name: "home"
+        file: "content/home.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Publish Date", name: "date", widget: "datetime" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "About"
+        name: "about"
+        file: "content/about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
   - name: "projects"
     title: "projects"
     label: "Projects"
     folder: "content/projects"
     create: true
     fields:
-      - { label: "Title", name: "title", widget: "string"}
+      - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Body", name: "body", widget: "markdown"}
-      - { label: "Cover Image", name: "coverImage", widget: "image", required: false, tagname: "" }
-      - { label: "Gallery",
+      - { label: "Body", name: "body", widget: "markdown" }
+      - {
+          label: "Cover Image",
+          name: "coverImage",
+          widget: "image",
+          required: false,
+          tagname: "",
+        }
+      - {
+          label: "Gallery",
           name: "galleryImages",
           widget: "list",
-          summary: '{{fields.image}}',
-          field: {label: Image, name: image, widget: image} }
+          summary: "{{fields.image}}",
+          field: { label: Image, name: image, widget: image },
+        }

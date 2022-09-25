@@ -24,13 +24,18 @@ export function ProjectSection(s: ProjectSectionData) {
       <h2>{s.title}</h2>
       <ImgReel images={s.galleryImagesMeta}>
         <Parallax config={parallaxFx.topBottomCoverImg}>
-          <div
+          <a
             style={{
               backgroundImage: `url(${s.coverImage})`,
               backgroundPositionY: `var(--bgpos)`,
             }}
+            href={"#" + s.coverImage}
             className="coverImage"
-          ></div>
+            onClick={(ev) => {
+              setDetailImage(0);
+              ev.preventDefault();
+            }}
+          ></a>
         </Parallax>
         <div>
           <div className="body">
@@ -43,7 +48,7 @@ export function ProjectSection(s: ProjectSectionData) {
                   className="galleryImage"
                   href={"#" + img.src}
                   onClick={(ev) => {
-                    setDetailImage(i);
+                    setDetailImage(i + 1);
                     ev.preventDefault();
                   }}
                 >
@@ -70,10 +75,16 @@ export function ProjectSection(s: ProjectSectionData) {
           showPlayButton={false}
           showFullscreenButton={false}
           startIndex={detailImage}
-          items={s.galleryImagesMeta.map((img) => ({
-            original: img.src,
-            thumbnail: img.src,
-          }))}
+          items={[
+            {
+              original: s.coverImage,
+              thumbnail: s.coverImage,
+            },
+            ...s.galleryImagesMeta.map((img) => ({
+              original: img.src,
+              thumbnail: img.src,
+            })),
+          ]}
         />
       </Modal>
     </div>
@@ -83,9 +94,9 @@ export function ProjectSection(s: ProjectSectionData) {
 export function ProjectSections({ projectSections }: ProjectSectionsData) {
   return (
     <div>
-      {projectSections
-        .map((s) => <ProjectSection key={s.title} {...s} />)
-        .slice(0, 1)}
+      {projectSections.map((s) => (
+        <ProjectSection key={s.title} {...s} />
+      ))}
     </div>
   );
 }

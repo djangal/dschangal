@@ -1,5 +1,21 @@
+@import "./header.scss";
+@import "./djungle.scss";
+
 html {
   font-family: FjallaOne-Regular;
+  color: var(--colText);
+  background: var(--colPrimaryBg);
+  body {
+    margin: 0;
+    overflow: auto;
+    overflow-x: hidden;
+  }
+}
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
 }
 
 .projectSection {
@@ -36,6 +52,7 @@ html {
     }
 
     .coverImage {
+      display: block;
       width: 50vw;
       height: max(80vh, 600px);
       z-index: -1;
@@ -50,6 +67,7 @@ $modalpadding: 24px;
   position: fixed;
   width: 100vw;
   height: 100vh;
+  z-index: 100;
   left: 0;
   top: 0;
   padding-top: $modalpadding;

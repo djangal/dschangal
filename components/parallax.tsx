@@ -15,7 +15,7 @@ export const parallaxFx = {
   },
   topBottomCoverImg: {
     from: "middle-bottom",
-    to: "top-top",
+    to: "bottom-bottom",
     props: {
       "--bgpos": {
         from: "60%",
@@ -23,15 +23,44 @@ export const parallaxFx = {
       },
     },
   },
+  header: {
+    from: "20px",
+    to: "60px",
+    direct: false,
+    props: {
+      "--headerScale": {
+        from: 0.99,
+        to: 0.01,
+      },
+    },
+  },
+
+  eule: {
+    from: "0px",
+    to: "100px",
+    props: {
+      "--x": {
+        from: "-240px",
+        to: "-100px",
+      },
+      "--deg": {
+        from: "-10deg",
+        to: "0deg",
+        timing: "circInOut",
+      },
+    },
+  },
 };
 
 export const Parallax = (opt) => {
   const children = opt?.children;
-  const config = opt?.config ?? parallaxFx.topBottomOpacity;
+  const config = opt?.config;
+  console.log("Parallax", config);
+
   const ref = useRef<HTMLElement>(null);
   const [basicScrollInst, setBasicScrollInst] = useState<any>(null);
   useEffect(() => {
-    if (ref.current && !basicScrollInst) {
+    if (ref.current && !basicScrollInst && config) {
       const inst = basicScroll.create({
         elem: ref.current,
         direct: true,
@@ -42,6 +71,7 @@ export const Parallax = (opt) => {
       inst.start();
     }
   });
+
   return (
     <div className="parallax" ref={ref}>
       {children}
