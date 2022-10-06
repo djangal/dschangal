@@ -57,7 +57,7 @@ export const Parallax = (opt) => {
   const config = opt?.config;
   console.log("Parallax", config);
 
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const [basicScrollInst, setBasicScrollInst] = useState<any>(null);
   useEffect(() => {
     if (ref.current && !basicScrollInst && config) {
