@@ -22,7 +22,7 @@ export function ProjectSection(s: ProjectSectionData) {
   return (
     <div className="projectSection">
       <h2>{s.title}</h2>
-      <ImgReel images={s.galleryImagesMeta}>
+      <ImgReel>
         <Parallax config={parallaxFx.topBottomCoverImg}>
           <a
             style={{
