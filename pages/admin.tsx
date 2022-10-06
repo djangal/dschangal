@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 import netlifyIdentity from "netlify-identity-widget";
 import { ProjectSectionsPreview } from "../components/project";
-import globalCss from "!!file-loader!/styles/index.scss";
+// import globalCss from "!!file-loader!/styles/index.scss";
 import Head from "next/head";
 
 const Admin = () => {
@@ -14,8 +14,8 @@ const Admin = () => {
       CMS.init();
       console.log("registerPreviewTemplate", ProjectSectionsPreview);
       console.log(CMS.getPreviewTemplate("projects"));
-      console.log("globalCssUrl");
-      console.log(globalCss);
+      // console.log("globalCssUrl");
+      // console.log(globalCss);
       CMS.registerPreviewTemplate("projects", ProjectSectionsPreview);
       console.log(CMS.getPreviewTemplate("projects"));
 
@@ -63,11 +63,7 @@ const Admin = () => {
     })();
   }, []);
 
-  return (
-    <div>
-      <Head></Head>
-    </div>
-  );
+  return <div>{/* <Head  /> */}</div>;
 };
 
 export default Admin;
