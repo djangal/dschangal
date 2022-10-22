@@ -4,6 +4,7 @@
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
+  target: "serverless",
   experimental: {
     images: {
       allowFutureImage: true,
