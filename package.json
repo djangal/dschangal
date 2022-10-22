@@ -10,6 +10,7 @@
     "netlify": "npx netlify-cms-proxy-server"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^4.27.3",
     "basicscroll": "^3.0.4",
     "browser-image-size": "^1.1.0",
     "buffer": "^6.0.3",
