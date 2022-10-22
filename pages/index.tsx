@@ -96,31 +96,12 @@ async function getContents(path: string, locale: string) {
 }
 
 async function getContent(filename: string) {
-  // let langfilename: string = null;
-  // if (locale) {
-  //   langfilename =
-  //     filename.substring(0, filename.length - "md".length) + locale + ".md";
-
-  //   if (!fs.existsSync(`./content/${langfilename}`)) {
-  //     langfilename = null;
-  //   }
-  // }
   let path = `./content/${filename}`;
   if (!fs.existsSync(path)) {
     path = path.substring(0, path.length - ".en.md".length) + ".de.md";
   }
   const file = fs.readFileSync(path, "utf8");
-
   const matterData = matter(file) as any as ProjectSectionData;
-
-  // console.log("read file", filename, langfilename);
-  // if (langfilename) {
-  //   const file = fs.readFileSync(`./content/${langfilename}`, "utf8");
-  //   const localizedMatterData = matter(file) as any as ProjectSectionData;
-  //   Object.assign(matterData.data, localizedMatterData.data);
-  //   matterData.content = localizedMatterData.content;
-  //   console.log("override with lang...");
-  // }
 
   await extendWithImageMeta(matterData.data);
   return {
