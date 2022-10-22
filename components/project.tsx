@@ -48,11 +48,19 @@ export function ProjectSection(s: ProjectSectionData) {
                     ev.preventDefault();
                   }}
                 >
-                  {img.width && img.height && (
+                  {img.width && img.height ? (
                     <Image
                       src={img.src}
                       width={img.width}
                       height={img.height}
+                      style={{
+                        opacity: "var(--opacity)",
+                        willChange: "opacity",
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={img.src}
                       style={{
                         opacity: "var(--opacity)",
                         willChange: "opacity",
