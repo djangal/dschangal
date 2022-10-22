@@ -1,4 +1,3 @@
-import { browser } from "process";
 import { ProjectSectionData } from "../components/project.model";
 import { getImageMeta } from "./getImageMeta";
 
