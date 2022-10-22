@@ -7,17 +7,17 @@ export async function getImageMeta(relativeUrls: string[]) {
   const result = new Array<ImgMeta>(relativeUrls.length);
   for (let i = 0; i < relativeUrls.length; i++) {
     const url = relativeUrls[i];
+    const f = path.join(process.cwd(), "public", url);
     try {
-      result[i] = await probe(
-        fs.createReadStream(path.join(process.cwd(), "public", url))
-      );
+      result[i] = await probe(fs.createReadStream(f));
 
       result[i].src = "/" + url;
     } catch (ex) {
       console.error(
-        `Could not read ${path.join(process.cwd(), "public", url)}:`,
+        `Could not read ${f} (size: ${fs.statSync(f).size} bytes):`,
         ex
       );
+
       result[i] = { src: "/" + url };
     }
   }
