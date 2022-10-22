@@ -50,7 +50,7 @@ export function ProjectSection(s: ProjectSectionData) {
                 >
                   {img.width && img.height ? (
                     <Image
-                      src={img.src}
+                      src={img.src + "?nf_resize=fit&h=400"}
                       width={img.width}
                       height={img.height}
                       style={{
@@ -60,7 +60,7 @@ export function ProjectSection(s: ProjectSectionData) {
                     />
                   ) : (
                     <img
-                      src={img.src}
+                      src={img.src + "?nf_resize=fit&h=400"}
                       style={{
                         opacity: "var(--opacity)",
                         willChange: "opacity",
