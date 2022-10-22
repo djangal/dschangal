@@ -13,11 +13,11 @@ export async function getImageMeta(relativeUrls: string[]) {
 
       result[i].src = "/" + url;
     } catch (ex) {
-      console.error(
-        `Could not read ${f} (size: ${fs.statSync(f).size} bytes):`,
-        ex
-      );
+      console.error(`Could not read ${f}:`, ex);
 
+      if (fs.existsSync(f)) {
+        console.log(`(size: ${fs.statSync(f).size} bytes)`);
+      }
       result[i] = { src: "/" + url };
     }
   }
