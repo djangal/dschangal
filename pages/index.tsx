@@ -65,8 +65,8 @@ export const getStaticProps: GetStaticProps<ProjectSectionsData> = async ({
   locale,
 }) => {
   const projects = await getContents("projects", locale);
-  const home = await getContent("home.md", locale);
-  const about = await getContent("about.md", locale);
+  const home = await getContent(`index/home.${locale}.md`);
+  const about = await getContent(`index/about.${locale}.md`);
 
   console.log("locale", locale);
   console.log(home);
@@ -80,43 +80,43 @@ export const getStaticProps: GetStaticProps<ProjectSectionsData> = async ({
 };
 
 async function getContents(path: string, locale: string) {
-  const langRegex = /.*\.(en|de|fr).md/;
+  const langRegex = new RegExp(`.*\\.${locale}\\.md`);
   const files = fs
     .readdirSync("./content/" + path)
-    .filter((filename) => false === langRegex.test(filename));
+    .filter((filename) => langRegex.test(filename));
 
   // Get the front matter and slug (the filename without .md) of all files
   const markdownContents = await Promise.all(
     files.map(async (filename) => {
-      return await getContent(path + "/" + filename, locale);
+      return await getContent(path + "/" + filename);
     })
   );
 
   return markdownContents;
 }
 
-async function getContent(filename: string, locale: string) {
-  let langfilename: string = null;
-  if (locale) {
-    langfilename =
-      filename.substring(0, filename.length - "md".length) + locale + ".md";
+async function getContent(filename: string) {
+  // let langfilename: string = null;
+  // if (locale) {
+  //   langfilename =
+  //     filename.substring(0, filename.length - "md".length) + locale + ".md";
 
-    if (!fs.existsSync(`./content/${langfilename}`)) {
-      langfilename = null;
-    }
-  }
+  //   if (!fs.existsSync(`./content/${langfilename}`)) {
+  //     langfilename = null;
+  //   }
+  // }
   const file = fs.readFileSync(`./content/${filename}`, "utf8");
 
   const matterData = matter(file) as any as ProjectSectionData;
 
-  console.log("read file", filename, langfilename);
-  if (langfilename) {
-    const file = fs.readFileSync(`./content/${langfilename}`, "utf8");
-    const localizedMatterData = matter(file) as any as ProjectSectionData;
-    Object.assign(matterData.data, localizedMatterData.data);
-    matterData.content = localizedMatterData.content;
-    console.log("override with lang...");
-  }
+  // console.log("read file", filename, langfilename);
+  // if (langfilename) {
+  //   const file = fs.readFileSync(`./content/${langfilename}`, "utf8");
+  //   const localizedMatterData = matter(file) as any as ProjectSectionData;
+  //   Object.assign(matterData.data, localizedMatterData.data);
+  //   matterData.content = localizedMatterData.content;
+  //   console.log("override with lang...");
+  // }
 
   await extendWithImageMeta(matterData.data);
   return {

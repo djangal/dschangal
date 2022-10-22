@@ -24,13 +24,21 @@ const Admin = () => {
         const iframe = document.getElementById(
           "preview-pane"
         ) as HTMLIFrameElement;
-        console.log(iframe);
+
+        if (
+          location.hash.indexOf("entries/") >= 0 &&
+          document.querySelector("header")
+        ) {
+          document.querySelector("header")?.remove();
+        }
+        // console.log(iframe);
         if (!iframe?.contentDocument?.head) {
           return;
         }
         const getAppStyle = () => {
           let style = "";
           let i = 0;
+          console.log(document.styleSheets[0], document.styleSheets[1]);
           for (let styleSheet of [].slice.call(document.styleSheets, 0, 2)) {
             style +=
               "\n /**** stylesheet NR " +
