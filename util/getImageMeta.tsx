@@ -1,7 +1,7 @@
-import { ImgMeta } from "../components/project.model";
 import path from "path";
 import probe from "probe-image-size";
 import * as fs from "fs";
+import { ImgMeta } from "./content.model";
 
 export async function getImageMeta(relativeUrls: string[]) {
   const result = new Array<ImgMeta>(relativeUrls.length);
