@@ -22,7 +22,7 @@ export function ProjectSection(s: ProjectSectionData) {
         <Parallax config={parallaxFx.topBottomCoverImg}>
           <a
             style={{
-              backgroundImage: `url(${s.coverImage})`,
+              backgroundImage: `url(${s.coverImage + "?nf_resize=fit&w=1000"})`,
               backgroundPositionY: `var(--bgpos)`,
             }}
             href={"#" + s.coverImage}
@@ -82,7 +82,7 @@ export function ProjectSection(s: ProjectSectionData) {
           items={[
             {
               original: s.coverImage,
-              thumbnail: s.coverImage,
+              thumbnail: s.coverImage + "?nf_resize=fit&w=100&h=200",
             },
             ...s.galleryImagesMeta.map((img) => ({
               original: img.src,
