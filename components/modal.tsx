@@ -60,7 +60,7 @@ export default function Modal({ children, open }) {
 
   function close() {
     containerEl?.remove();
-    document.body.style.overflow = "auto";
+    document.body.style.removeProperty("overflow");
     window.removeEventListener("keydown", keypresshandler);
   }
 }
