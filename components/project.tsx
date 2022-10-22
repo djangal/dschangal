@@ -134,12 +134,6 @@ export const ProjectSectionsPreview = ({ entry, widgetFor }) => {
       setExtData(extData);
     });
   }, [entry]);
-  console.log(
-    "ProjectSectionPreview",
-    entry.toObject(),
-    inputData,
-    extendedData
-  );
   return (
     <Application
       Component={Wrapper}

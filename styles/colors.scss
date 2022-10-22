@@ -1,9 +1,11 @@
 $colPrimaryBgRgb: 252, 254, 243;
 $colPrimaryBg: rgb(252, 254, 243);
 
+$colPrimary: rgb(21, 119, 28);
+
 $colText: rgb(20, 30, 20);
 
-$colBorder: rgb(200, 200, 200);
+$colBorder: rgb(100, 100, 100);
 
 html {
   --colPrimaryBgRgb: #{$colPrimaryBgRgb};

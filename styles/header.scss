@@ -37,6 +37,7 @@ body {
   .menu-left {
     padding-left: 8px;
     .logo {
+      padding-left: 32px;
       height: calc(var(--headerHeight) - 8px);
     }
   }
@@ -45,15 +46,26 @@ body {
     display: flex;
     justify-content: end;
     align-items: center;
-    padding-right: 1rem;
+    padding-right: 2rem;
   }
   .menu-item {
     display: flex;
+    align-items: center;
     line-height: calc(var(--headerHeight) - 8px);
     padding: 4px;
 
-    &:not(:last-child) {
-      border-right: 1px solid $colBorder;
+    &.active {
+      color: $colPrimary;
+    }
+
+    &:not(:last-child)::after {
+      display: block;
+      content: "";
+      height: 20px;
+      width: 1px;
+      margin-left: 8px;
+      background: $colBorder;
+      // border-right: 1px solid $colBorder;
     }
   }
 }

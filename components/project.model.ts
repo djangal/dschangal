@@ -1,17 +1,6 @@
-export interface ImgMeta {
-  width?: number;
-  height?: number;
-  type?: string;
-  mime?: string;
-  wUnits?: string;
-  hUnits?: string;
-  src: string;
-}
+import { ContentPageMarkdownData, ImgMeta } from "../util/content.model";
 
-export interface ProjectSectionData {
-  slug: string;
-  title: string;
-  body: string;
+export interface ProjectSectionData extends ContentPageMarkdownData {
   coverImage?: string;
   coverImageMeta?: ImgMeta;
   galleryImages?: string[];

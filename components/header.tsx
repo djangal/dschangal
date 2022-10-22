@@ -13,7 +13,20 @@ export interface MenuItemModel {
 export default function HeaderMenu(props: { menuItems: MenuItemModel[] }) {
   const headerRef = useRef<HTMLDivElement>(null);
   const anchorRef = useRef<HTMLDivElement>(null);
-  console.log("headerrender", headerRef, anchorRef);
+
+  const [hash, setHash] = useState("");
+
+  useEffect(() => {
+    if (window.location.hash !== hash) {
+      setHash(window.location.hash);
+    }
+    const handleHashChange = () => setHash(window.location.hash);
+    if (alert) {
+      window.addEventListener("hashchange", handleHashChange);
+    } else {
+      window.removeEventListener("hashchange", handleHashChange);
+    }
+  }, [hash, setHash]);
 
   return (
     <>
@@ -24,7 +37,11 @@ export default function HeaderMenu(props: { menuItems: MenuItemModel[] }) {
           </div>
           <div className="menu-right">
             {props.menuItems?.map((item) => (
-              <a href={item.href} className="menu-item" key={item.href}>
+              <a
+                href={item.href}
+                className={"menu-item " + (hash === item.href ? "active" : "")}
+                key={item.href}
+              >
                 {item.label}
               </a>
             ))}

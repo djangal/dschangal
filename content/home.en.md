@@ -2,8 +2,8 @@
 title: Dschangal
 ---
 
-### Willkommen in der
+### Welcome to the
 
 # Dschangal
 
-## Werkstatt
+## workshop

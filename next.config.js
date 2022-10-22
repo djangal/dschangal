@@ -10,6 +10,10 @@ const nextConfig = {
       unoptimized: true,
     },
   },
+  i18n: {
+    locales: ["en", "de", "fr"],
+    defaultLocale: "de",
+  },
   /* config options here */
   webpack: (cfg) => {
     cfg.module.rules.push(

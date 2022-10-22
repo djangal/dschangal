@@ -7,4 +7,4 @@ galleryImages:
   - img/340a9916.jpg
 ---
 
-Holzdschungel vom Datum xyz in Wo auch immer
+Dies ist ein Beispiel für eine Beschreibung.

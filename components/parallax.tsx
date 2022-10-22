@@ -36,8 +36,8 @@ export const parallaxFx = {
   },
 
   eule: {
-    from: "0px",
-    to: "100px",
+    from: "150px",
+    to: "200px",
     props: {
       "--x": {
         from: "-240px",
@@ -55,7 +55,6 @@ export const parallaxFx = {
 export const Parallax = (opt) => {
   const children = opt?.children;
   const config = opt?.config;
-  console.log("Parallax", config);
 
   const ref = useRef<HTMLDivElement | null>(null);
   const [basicScrollInst, setBasicScrollInst] = useState<any>(null);
