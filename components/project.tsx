@@ -1,9 +1,5 @@
 import ReactMarkdown from "react-markdown";
-import {
-  ImgMeta,
-  ProjectSectionData,
-  ProjectSectionsData,
-} from "./project.model";
+import { ProjectSectionData, ProjectSectionsData } from "./project.model";
 import Head from "next/head";
 import Image from "next/future/image";
 
