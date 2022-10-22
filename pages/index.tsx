@@ -105,7 +105,11 @@ async function getContent(filename: string) {
   //     langfilename = null;
   //   }
   // }
-  const file = fs.readFileSync(`./content/${filename}`, "utf8");
+  let path = `./content/${filename}`;
+  if (!fs.existsSync(path)) {
+    path = path.substring(0, path.length - ".en.md".length) + ".de.md";
+  }
+  const file = fs.readFileSync(path, "utf8");
 
   const matterData = matter(file) as any as ProjectSectionData;
 
