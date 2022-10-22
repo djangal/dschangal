@@ -10,7 +10,6 @@ import {
 } from "../content/about.md";
 
 import matter from "gray-matter";
-import ReactMarkdown from "react-markdown";
 import * as fs from "fs";
 import { GetStaticProps } from "next";
 import {
@@ -19,7 +18,6 @@ import {
 } from "../components/project.model";
 import { ProjectSections } from "../components/project";
 
-import { relative } from "path";
 import { extendWithImageMeta } from "../util/extendWithImageMeta";
 import HeaderMenu from "../components/header";
 import DjungleEule from "../components/djungle";
