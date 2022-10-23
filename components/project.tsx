@@ -48,25 +48,15 @@ export function ProjectSection(s: ProjectSectionData) {
                     ev.preventDefault();
                   }}
                 >
-                  {img.width && img.height ? (
-                    <Image
-                      src={img.src + "?nf_resize=fit&h=400"}
-                      width={img.width}
-                      height={img.height}
-                      style={{
-                        opacity: "var(--opacity)",
-                        willChange: "opacity",
-                      }}
-                    />
-                  ) : (
-                    <img
-                      src={img.src + "?nf_resize=fit&h=400"}
-                      style={{
-                        opacity: "var(--opacity)",
-                        willChange: "opacity",
-                      }}
-                    />
-                  )}
+                  <Image
+                    src={img.src + "?nf_resize=fit&h=400"}
+                    width={img.width ?? null}
+                    height={img.height ?? 400}
+                    style={{
+                      opacity: "var(--opacity)",
+                      willChange: "opacity",
+                    }}
+                  />
                 </a>
               </Parallax>
             ))}
